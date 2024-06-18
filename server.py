@@ -1,10 +1,13 @@
 from flask import Flask, request, jsonify
 from dotenv import load_dotenv
+import os
 from models.fitness_model import FitnessModel
 from models.nutrition_model import NutritionModel
 
 load_dotenv()
 
+HOST = os.getenv("FLASK_RUN_HOST", "127.0.0.1")
+FLASK_RUN_PORT = os.getenv("FLASK_RUN_PORT", 7860)
 
 fitness_model = FitnessModel.load()
 nutrition_model = NutritionModel()
@@ -54,4 +57,4 @@ def nutrition_predict():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host=HOST, port=FLASK_RUN_PORT)
