@@ -63,4 +63,4 @@ ENV FLASK_RUN_PORT=7860
 EXPOSE 7860
 
 # Run the application
-CMD ["flask", "run"]
+CMD ["python3", "server.py"]
