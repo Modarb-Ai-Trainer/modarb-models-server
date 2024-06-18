@@ -6,8 +6,7 @@ import os
 
 SERVER_FILE_DIR = os.path.dirname(os.path.abspath(__file__))
 NUTRITION_MODEL_PATH = os.path.join(SERVER_FILE_DIR, "../resources/models/nutrition_model.pkl")
-MEALS_JSON_PATH = os.path.join(SERVER_FILE_DIR, "../../src/resources/meals.json")
-
+MEALS_JSON_PATH = os.path.join(SERVER_FILE_DIR, "../resources/datasets/meals.json")
 # Ensure the file exists
 if not os.path.exists(MEALS_JSON_PATH):
     raise FileNotFoundError(f"File {MEALS_JSON_PATH} does not exist")
