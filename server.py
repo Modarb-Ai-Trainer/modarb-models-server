@@ -57,4 +57,4 @@ def nutrition_predict():
 
 
 if __name__ == "__main__":
-    app.run(host=HOST, port=FLASK_RUN_PORT, debug=True)
+    app.run(host=HOST, port=FLASK_RUN_PORT)
