@@ -1,6 +1,15 @@
 # Use the official Python image from the Docker Hub
 FROM python:3.12-slim
 
+RUN if id -u 1000 &> /dev/null; then \
+        uid=$(shuf -i 1001-65535 -n 1) \
+        && useradd -m -u $uid user; \
+    else \
+        useradd -m -u 1000 user; \
+    fi
+
+# Set the working directory inside the container
+
 # install apt dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -46,13 +55,15 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 # Copy the requirements.txt file into the container at /app
-COPY requirements.txt requirements.txt
+COPY --chown=user requirements.txt requirements.txt
 
 # Install the dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application code into the container at /app
-COPY . .
+COPY --chown=user . .
+
+USER user
 
 # Set environment variables for Flask
 ENV FLASK_APP=server.py

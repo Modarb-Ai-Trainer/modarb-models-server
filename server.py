@@ -6,8 +6,7 @@ from models.nutrition_model import NutritionModel
 
 load_dotenv()
 
-
-HOST = os.getenv("FLASK_RUN_HOST", "127.0.0.1")
+HOST = os.getenv("FLASK_RUN_HOST", "0.0.0.0")
 FLASK_RUN_PORT = os.getenv("FLASK_RUN_PORT", 7860)
 
 fitness_model = FitnessModel.load()
