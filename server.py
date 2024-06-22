@@ -40,7 +40,8 @@ def fitness_predict():
             return jsonify({"error": f"{paramName} is missing"}), 400
         params[paramName] = value
 
-    return jsonify({"result": fitness_model.predict(**params)})
+    res = fitness_model.predict(**params)
+    return jsonify(res)
 
 
 @app.post("/nutrition")
@@ -53,7 +54,8 @@ def nutrition_predict():
         if value is None:
             return jsonify({"error": f"{paramName} is missing"}), 400
         params[paramName] = value
-    return jsonify({"result": nutrition_model.generate_plan(**params)})
+
+    return jsonify(nutrition_model.generate_plan(**params))
 
 
 if __name__ == "__main__":
